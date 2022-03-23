@@ -28,7 +28,8 @@ export class ProfessorService {
     return this.professorRepository.update(id, updateProfessorDto);
   }
 
-  remove(id: number) {
-    return this.professorRepository.delete(id);
+
+  async removeMutlitple(professors: Professor[]){
+    return this.professorRepository.remove(professors);
   }
 }

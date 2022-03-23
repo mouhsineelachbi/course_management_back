@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ProfessorService } from './professor.service';
 import { CreateProfessorDto } from './dto/create-professor.dto';
 import { UpdateProfessorDto } from './dto/update-professor.dto';
+import { Professor } from './entities/professor.entity';
 
 @Controller('professor')
 export class ProfessorController {
@@ -27,8 +28,8 @@ export class ProfessorController {
     return this.professorService.update(+id, updateProfessorDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.professorService.remove(+id);
+  @Delete('/multiple')
+  removeMultiple(@Body() professors: Professor[]){
+    return this.professorService.removeMutlitple(professors);
   }
 }
