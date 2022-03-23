@@ -9,6 +9,9 @@ export class Course {
     id: number;
 
     @Column()
+    name: string;
+
+    @Column()
     duration: number;
     
     @Column()
