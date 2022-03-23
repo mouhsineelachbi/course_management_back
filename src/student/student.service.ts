@@ -35,4 +35,12 @@ export class StudentService {
   async removeMutlitple(students: Student[]){
     return this.studentRepository.remove(students);
   }
+
+  async findLastInserted(){
+    return this.studentRepository.findOne({
+      order: {
+        id: 'DESC'
+      }
+    })
+  }
 }

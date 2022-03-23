@@ -18,9 +18,14 @@ export class StudentController {
     return this.studentService.findAll()  ;
   }
 
-  @Get(':id')
+  @Get('/findone/:id')
   findOne(@Param('id') id: string) {
     return this.studentService.findOne(+id);
+  }
+
+  @Get('/finalInserted')
+  findLastInserted(){
+    return this.studentService.findLastInserted();
   }
 
   @Patch(':id')
