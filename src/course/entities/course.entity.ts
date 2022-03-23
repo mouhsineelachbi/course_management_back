@@ -14,7 +14,7 @@ export class Course {
     @Column()
     language: string;
 
-    @ManyToOne(()=> Professor, professor => professor.courses)
+    @ManyToOne(()=> Professor, professor => professor.courses, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
     professor: Professor;
 
     @ManyToMany(() => Student, student => student.courses, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
