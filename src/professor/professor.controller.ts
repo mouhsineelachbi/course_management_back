@@ -18,9 +18,14 @@ export class ProfessorController {
     return this.professorService.findAll();
   }
 
-  @Get(':id')
+  @Get('/findone/:id')
   findOne(@Param('id') id: string) {
     return this.professorService.findOne(+id);
+  }
+
+  @Get('/finalInserted')
+  findLastInsertedt(){
+    return this.professorService.findLastInserted();
   }
 
   @Patch(':id')

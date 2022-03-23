@@ -24,6 +24,10 @@ export class ProfessorService {
     return this.professorRepository.findOne({where: {id: id}});
   }
 
+  findLastInserted(){
+    return this.professorRepository.findOne({order:{id:'DESC'}});
+  }
+
   update(id: number, updateProfessorDto: UpdateProfessorDto) {
     return this.professorRepository.update(id, updateProfessorDto);
   }
