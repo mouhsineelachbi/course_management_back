@@ -23,6 +23,10 @@ export class CourseService {
     return this.courseRepository.findOne({where: {id: id}});
   }
 
+  findLastInserted() {
+    return this.courseRepository.findOne({order: {id: 'DESC'}});
+  }
+
   update(id: number, updateCourseDto: UpdateCourseDto) {
     return this.courseRepository.update(id, updateCourseDto);
   }
