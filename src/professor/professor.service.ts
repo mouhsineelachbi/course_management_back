@@ -17,7 +17,11 @@ export class ProfessorService {
   }
 
   findAll() {
-    return this.professorRepository.find();
+    return this.professorRepository.find({
+      relations: {
+        courses: true
+      }
+    });
   }
 
   findOne(id: number) {

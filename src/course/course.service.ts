@@ -16,7 +16,12 @@ export class CourseService {
   }
 
   findAll() {
-    return this.courseRepository.find();
+    return this.courseRepository.find({
+      relations: {
+        students: true,
+        professor: true
+      }
+    });
   }
 
   findOne(id: number) {
@@ -31,7 +36,7 @@ export class CourseService {
     return this.courseRepository.update(id, updateCourseDto);
   }
 
-  remove(id: number) {
-    return this.courseRepository.delete(id);
+  async removeMutlitple(courses: Course[]){
+    return this.courseRepository.remove(courses);
   }
 }

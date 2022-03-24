@@ -1,3 +1,4 @@
+import { Course } from './../course/entities/course.entity';
 import { Student } from './entities/student.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -17,7 +18,11 @@ export class StudentService {
   }
 
   findAll() {
-    return this.studentRepository.find();
+    return this.studentRepository.find({
+      relations: {
+        courses: true
+      }
+    });
   }
 
   findOne(id: number) {
