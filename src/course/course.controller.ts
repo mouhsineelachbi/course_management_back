@@ -1,3 +1,4 @@
+import { Course } from './entities/course.entity';
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
@@ -32,8 +33,8 @@ export class CourseController {
     return this.courseService.update(+id, updateCourseDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.courseService.remove(+id);
+  @Delete('/multiple')
+  remove(@Body() courses: Course[]) {
+    return this.courseService.removeMutlitple(courses);
   }
 }
