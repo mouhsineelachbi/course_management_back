@@ -33,7 +33,7 @@ export class CourseService {
   }
 
   update(id: number, updateCourseDto: UpdateCourseDto) {
-    return this.courseRepository.update(id, updateCourseDto);
+    return this.courseRepository.save(updateCourseDto);
   }
 
   async removeMutlitple(courses: Course[]){
