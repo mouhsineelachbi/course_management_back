@@ -17,10 +17,10 @@ export class Course {
     @Column()
     language: string;
 
-    @ManyToOne(()=> Professor, professor => professor.courses, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+    @ManyToOne(()=> Professor, professor => professor.courses, { cascade: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
     professor: Professor;
 
-    @ManyToMany(() => Student, student => student.courses, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+    @ManyToMany(() => Student, student => student.courses, { cascade: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
     @JoinTable()
     students: Student[]
 }
