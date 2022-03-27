@@ -30,12 +30,8 @@ export class StudentService {
   }
 
   update(id: number, updateStudentDto: UpdateStudentDto) {
-    return this.studentRepository.update(id, updateStudentDto);
+    return this.studentRepository.save(updateStudentDto);
   }
-
-  // remove(id: number) {
-  //   return this.studentRepository.delete(id);
-  // }
 
   async removeMutlitple(students: Student[]){
     return this.studentRepository.remove(students);
