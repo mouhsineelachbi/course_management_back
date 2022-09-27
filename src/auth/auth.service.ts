@@ -1,12 +1,11 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { UsersService } from 'src/users/users.service';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import { UsersService } from "src/users/users.service";
+import { CreateAuthDto } from "./dto/create-auth.dto";
+import { UpdateAuthDto } from "./dto/update-auth.dto";
 
 @Injectable()
 export class AuthService {
-
   constructor(
     private userService: UsersService,
     private jwtService: JwtService
@@ -25,17 +24,15 @@ export class AuthService {
   async login(user: any) {
     const payload = { username: user.username, sub: user.userId };
     const valide = await this.validateUser(user.username, user.password);
-    if(!valide) throw new HttpException(
-      "incorrect password",
-      HttpStatus.BAD_REQUEST
-    );
+    if (!valide)
+      throw new HttpException("incorrect password", HttpStatus.BAD_REQUEST);
     return {
       access_token: this.jwtService.sign(payload),
     };
   }
 
   create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
+    return "This action adds a new auth";
   }
 
   findAll() {
