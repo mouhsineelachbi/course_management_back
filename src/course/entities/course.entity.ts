@@ -1,26 +1,34 @@
-import { Student } from './../../student/entities/student.entity';
-import { Professor } from './../../professor/entities/professor.entity';
-import { Column, JoinColumn, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
-import { PrimaryGeneratedColumn } from 'typeorm';
-import { Entity } from 'typeorm';
+import { Student } from "./../../student/entities/student.entity";
+import { Professor } from "./../../professor/entities/professor.entity";
+import { Column, JoinColumn, JoinTable, ManyToMany, ManyToOne } from "typeorm";
+import { PrimaryGeneratedColumn } from "typeorm";
+import { Entity } from "typeorm";
 @Entity()
 export class Course {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    duration: number;
-    
-    @Column()
-    language: string;
+  @Column()
+  duration: number;
 
-    @ManyToOne(()=> Professor, professor => professor.courses, { cascade: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
-    professor: Professor;
+  @Column()
+  language: string;
 
-    @ManyToMany(() => Student, student => student.courses, { cascade: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
-    @JoinTable()
-    students: Student[]
+  @ManyToOne(() => Professor, (professor) => professor.courses, {
+    cascade: true,
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
+  professor: Professor;
+
+  @ManyToMany(() => Student, (student) => student.courses, {
+    cascade: true,
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
+  @JoinTable()
+  students: Student[];
 }
