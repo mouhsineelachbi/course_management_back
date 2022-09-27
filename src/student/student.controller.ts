@@ -1,10 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Req } from '@nestjs/common';
-import { StudentService } from './student.service';
-import { CreateStudentDto } from './dto/create-student.dto';
-import { UpdateStudentDto } from './dto/update-student.dto';
-import { Student } from './entities/student.entity';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+  Req,
+} from "@nestjs/common";
+import { StudentService } from "./student.service";
+import { CreateStudentDto } from "./dto/create-student.dto";
+import { UpdateStudentDto } from "./dto/update-student.dto";
+import { Student } from "./entities/student.entity";
 
-@Controller('student')
+@Controller("student")
 export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
@@ -15,21 +25,21 @@ export class StudentController {
 
   @Get()
   findAll() {
-    return this.studentService.findAll()  ;
+    return this.studentService.findAll();
   }
 
-  @Get('/findone/:id')
-  findOne(@Param('id') id: string) {
+  @Get("/findone/:id")
+  findOne(@Param("id") id: string) {
     return this.studentService.findOne(+id);
   }
 
-  @Get('/finalInserted')
-  findLastInserted(){
+  @Get("/finalInserted")
+  findLastInserted() {
     return this.studentService.findLastInserted();
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
+  @Patch(":id")
+  update(@Param("id") id: string, @Body() updateStudentDto: UpdateStudentDto) {
     return this.studentService.update(+id, updateStudentDto);
   }
 
@@ -38,8 +48,8 @@ export class StudentController {
   //   return this.studentService.remove(+id);
   // }
 
-  @Delete('/multiple')
-  removeMultiple(@Body() students: Student[]){
+  @Delete("/multiple")
+  removeMultiple(@Body() students: Student[]) {
     return this.studentService.removeMutlitple(students);
   }
 }
