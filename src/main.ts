@@ -1,13 +1,12 @@
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
-import * as bodyParser from 'body-parser';
+import * as bodyParser from "body-parser";
 import { Request, Response } from "express";
 import { AppModule } from "./app.module";
 
 declare const module: any;
 
 async function bootstrap() {
-
   const app = await NestFactory.create(AppModule, { bodyParser: false });
   // app.useGlobalPipes(new ValidationPipe());
   // app.use((req: Request, res: Response, next: any) => {
@@ -18,10 +17,8 @@ async function bootstrap() {
   const rawBodyBuffer = (req, res, buf, encoding) => {
     if (buf && buf.length) {
       req.rawBody = buf.toString(encoding || "utf8");
-      
     }
   };
-
 
   app.use(bodyParser.urlencoded({ verify: rawBodyBuffer, extended: true }));
   app.use(bodyParser.json({ verify: rawBodyBuffer }));
